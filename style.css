@@ -1,0 +1,140 @@
+:root {
+  --hour-deg: 0deg;
+  --minute-deg: 0deg;
+  --animDuration: 2s;
+}
+* {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  background: #333;
+}
+
+#clock-container {
+  position: absolute;
+  display: grid;
+  place-content: center;
+  right: 1rem;
+  top: 1rem;
+}
+
+speedcontroller {
+  display: flex;
+  gap: 0.2em;
+  font-size: 2rem;
+  color: #fefefe;
+}
+
+speedcontroller > * {
+  cursor: pointer;
+}
+
+.clock {
+  display: grid;
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  border: 2px solid brown;
+  border-radius: 50%;
+  background: #fefefe;
+}
+
+.clock .arm {
+  position: absolute;
+  height: 0px;
+  top: 50%;
+  left: 50%;
+  border-bottom: 1px solid;
+  transform-origin: left;
+}
+
+.clock .arm.hour {
+  rotate: var(--hour-deg);
+  /* rotate: -90deg; */
+  width: 35%;
+}
+
+.clock .arm.minute {
+  rotate: var(--minute-deg);
+  /* rotate: -90deg; */
+  width: 45%;
+}
+
+game {
+  display: grid;
+  place-content: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+world {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  background: rgb(23, 233, 23);
+  overflow: hidden;
+}
+
+road {
+  position: absolute;
+  background-color: dimgray;
+  width: 100%;
+  height: 80px;
+  bottom: 10%;
+}
+
+road line {
+  --line-length: 10px;
+  --line-gap: 12px;
+
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255),
+    rgba(255, 255, 255) var(--line-length),
+    rgba(255, 255, 255, 0) var(--line-length),
+    rgba(255, 255, 255, 0) calc(var(--line-length) + var(--line-gap))
+  );
+  top: 50%;
+}
+
+car {
+  position: absolute;
+  right: 100%;
+  background: red;
+  width: 70px;
+  height: 30px;
+}
+
+car windscreen {
+  position: absolute;
+  margin-top: 1%;
+  width: 10px;
+  height: 98%;
+  background: linear-gradient(90deg, #eee, #ccc, #eee);
+}
+
+@keyframes driveL2R {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: calc(500px + 100%) 0;
+  }
+}
+
+cardata {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  color: white;
+  font-size: 3rem;
+}
