@@ -1,3 +1,5 @@
+import { gamePausedMusic, gameResumedMusic, setMusicSpeed } from "../music.js";
+
 let time = window.localStorage.getItem("time") || Date.now();
 let interval;
 
@@ -57,6 +59,8 @@ const initClock = (element = document.querySelector("game")) => {
 
 const speedHandler = (e) => {
   window.speed = e.target.speed;
+  window.speed === 0 ? gamePausedMusic() : gameResumedMusic();
+  setMusicSpeed(e.target.musicSpeed);
   updateSpeed();
 };
 
@@ -68,26 +72,31 @@ const initSpeed = (element = document.querySelector("game")) => {
       name: "pause",
       value: 0,
       text: "⏸",
+      musicSpeed: 0.8,
     },
     {
       name: "slow",
       value: 0.5,
       text: "➷",
+      musicSpeed: 0.9,
     },
     {
       name: "normal",
       value: 1,
       text: "➵",
+      musicSpeed: 1,
     },
     {
       name: "fast",
       value: 4,
       text: "➹",
+      musicSpeed: 1.3,
     },
     {
       name: "ultra",
       value: 20,
       text: "➳",
+      musicSpeed: 2,
     },
   ];
 
@@ -96,6 +105,7 @@ const initSpeed = (element = document.querySelector("game")) => {
     const el = document.createElement(speed.name);
     el.speed = speed.value;
     el.innerText = speed.text;
+    el.musicSpeed = speed.musicSpeed;
     el.addEventListener("click", speedHandler);
     speedEl.append(el);
   });

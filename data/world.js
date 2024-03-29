@@ -1,3 +1,5 @@
+import { carClickedSound } from "../music.js";
+
 const roads = [];
 const cars = new Set();
 window.density = 3;
@@ -33,6 +35,7 @@ const updateCarsClicked = (e) => {
   document.querySelector(
     "clicked"
   ).innerText = `Cars clicked: ${window.carsClicked}`;
+  carClickedSound();
 };
 
 window.updateCarSpeed = (speed) => {

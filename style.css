@@ -138,3 +138,9 @@ cardata {
   color: white;
   font-size: 3rem;
 }
+
+#sound-container {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+}
